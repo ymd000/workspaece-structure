@@ -1,0 +1,271 @@
+/* @theme demo
+ * Marp theme reproducing demo.pptx (Office テーマ)
+ *
+ * Colors  — accent1=#156082, title=#0B3041, bg=#F2F2F2
+ * Fonts   — Noto Sans JP: Black(900) titles / Medium(500) headings / Light(300) body
+ * Sizes   — faithful to pptx: title 44pt→58px, body 24pt→32px, footnote 14pt→19px
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;900&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --bg:       #f2f2f2;
+  --title:    #0b3041;   /* accent1(#156082) @ lumMod 50% */
+  --text:     #1a1a1a;
+  --muted:    #888888;
+  --accent1:  #156082;
+  --accent2:  #e97132;
+  --accent3:  #196b24;
+  --accent4:  #0f9ed5;
+  --accent5:  #a02b93;
+  --dk2:      #0e2841;
+  --lt2:      #e8e8e8;
+}
+
+/* ── Base slide ─────────────────────────────────────────────── */
+section {
+  width: 1280px;
+  height: 720px;
+  font-family: 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.5;
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 8px 40px 36px;
+  box-sizing: border-box;
+}
+
+/* ── Title (h1 = slide heading, top bar) ───────────────────── */
+h1 {
+  font-weight: 900;
+  font-size: 58px;       /* 44pt × 1.333 */
+  color: var(--title);
+  line-height: 1.05;
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 2.5px solid var(--accent1);
+}
+
+/* ── Section heading within body ───────────────────────────── */
+h2 {
+  font-weight: 500;
+  font-size: 37px;       /* 28pt × 1.333 */
+  color: var(--text);
+  margin: 14px 0 6px;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 32px;       /* 24pt × 1.333 */
+  margin: 10px 0 4px;
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 27px;
+  margin: 8px 0 3px;
+}
+
+/* ── Body text ─────────────────────────────────────────────── */
+p {
+  font-size: 32px;
+  margin: 4px 0;
+  font-weight: 300;
+}
+
+ul, ol {
+  padding-left: 34px;
+  margin: 4px 0;
+}
+
+li {
+  font-size: 32px;       /* 24pt */
+  font-weight: 300;
+  margin: 3px 0;
+}
+
+li li {
+  font-size: 27px;       /* 20pt */
+}
+
+li li li {
+  font-size: 24px;       /* 18pt */
+}
+
+/* Medium weight for bold/strong (matches Noto Sans JP Medium in pptx) */
+strong {
+  font-weight: 500;
+}
+
+/* Italic → accent color (used like em-dash emphasis in pptx) */
+em {
+  font-style: normal;
+  color: var(--accent1);
+}
+
+/* ── Inline code / pre ─────────────────────────────────────── */
+code {
+  background-color: var(--lt2);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 26px;
+}
+
+pre {
+  background-color: var(--dk2);
+  color: #e8e8e8;
+  padding: 18px 24px;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 22px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* ── Tables ─────────────────────────────────────────────────── */
+table {
+  border-collapse: collapse;
+  font-size: 28px;
+  width: 100%;
+  margin: 8px 0;
+}
+
+th {
+  background-color: var(--accent1);
+  color: #ffffff;
+  font-weight: 500;
+  padding: 8px 14px;
+  text-align: left;
+}
+
+td {
+  padding: 6px 14px;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+tr:nth-child(even) td {
+  background-color: rgba(21, 96, 130, 0.07);
+}
+
+/* ── Blockquote ─────────────────────────────────────────────── */
+blockquote {
+  border-left: 4px solid var(--accent1);
+  padding: 4px 20px;
+  margin: 8px 0;
+  color: #555;
+  font-style: normal;
+}
+
+/* ── Footnote / footer ─────────────────────────────────────── */
+footer {
+  position: absolute;
+  bottom: 14px;
+  left: 40px;
+  right: 80px;
+  font-size: 19px;       /* 14pt × 1.333 */
+  font-weight: 300;
+  color: var(--muted);
+}
+
+/* ── Page number ────────────────────────────────────────────── */
+section::after {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Slide variants  (_class directive in Marp)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* ── Title slide  <!-- _class: title --> ───────────────────── */
+section.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 90px;
+}
+
+section.title h1 {
+  font-size: 64px;
+  border-bottom: none;
+  margin-bottom: 18px;
+  color: var(--title);
+}
+
+section.title h2 {
+  font-size: 32px;
+  font-weight: 300;
+  color: #555555;
+  margin: 0 0 8px;
+}
+
+section.title p {
+  font-size: 28px;
+  color: #555555;
+}
+
+/* ── Section divider  <!-- _class: section --> ─────────────── */
+section.section {
+  background-color: var(--accent1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section.section h1 {
+  color: #ffffff;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+  font-size: 58px;
+  margin-bottom: 12px;
+}
+
+section.section h2 {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 300;
+  font-size: 32px;
+  margin: 0;
+}
+
+/* ── Dark slide  <!-- _class: dark --> ─────────────────────── */
+section.dark {
+  background-color: var(--dk2);
+  color: #e8e8e8;
+}
+
+section.dark h1 {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+section.dark h2 {
+  color: #e8e8e8;
+}
+
+/* ── Two-column layout  <!-- _class: columns --> ───────────── */
+section.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 36px;
+}
+
+section.columns h1 {
+  grid-column: 1 / -1;
+}
+
+/* ── Small body text  <!-- _class: small --> ───────────────── */
+section.small li,
+section.small p {
+  font-size: 26px;
+}
+
+section.small li li {
+  font-size: 22px;
+}

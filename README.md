@@ -84,8 +84,17 @@ source ~/.bashrc
 
 ### ヘルパー関数
 
-ヘルパー関数は、このドキュメントを参考に各自の環境に合わせて作成・カスタマイズしてください。
-dotfilesレポジトリで管理することを推奨します。
+```bash
+# Marpテーマをインストール
+mkdir -p ~/.config/marp/themes
+cp ~/github.com/ymd000/workspaece-structure/marp/themes/demo.css ~/.config/marp/themes/
+
+# ヘルパー関数を読み込む（.zshrc または .bashrc に追記）
+echo 'source ~/github.com/ymd000/workspaece-structure/marp/functions.sh' >> ~/.zshrc
+
+# Marp CLI をインストール（未インストールの場合）
+npm install -g @marp-team/marp-cli
+```
 
 
 ## ヘルパー関数
