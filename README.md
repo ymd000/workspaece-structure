@@ -90,6 +90,7 @@ mkdir -p ~/.config/marp/themes
 cp ~/github.com/ymd000/workspaece-structure/marp/themes/demo.css ~/.config/marp/themes/
 
 # ヘルパー関数を読み込む（.zshrc または .bashrc に追記）
+echo 'source ~/github.com/ymd000/workspaece-structure/project/functions.sh' >> ~/.zshrc
 echo 'source ~/github.com/ymd000/workspaece-structure/marp/functions.sh' >> ~/.zshrc
 
 # Marp CLI をインストール（未インストールの場合）

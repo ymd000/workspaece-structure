@@ -219,10 +219,9 @@ export-marp() {
 
 # ── export-marp-editable ──────────────────────────────────────────────────────
 # Usage: export-marp-editable <file.md>
-# Exports to editable PPTX via pandoc — text/shapes are native PPTX elements,
-# not images, so they can be edited in LibreOffice/PowerPoint.
-# Uses demo.pptx as reference template (colors, fonts, layouts are inherited).
-# Marp-specific directives (_class, _footer) are silently ignored.
+# Exports to editable PPTX via marp --pptx-editable — text/shapes are native
+# PPTX elements so they can be edited in PowerPoint/LibreOffice, while Marp
+# themes and layouts are fully preserved.
 export-marp-editable() {
   local input="$1"
   if [[ -z "$input" ]]; then
@@ -230,23 +229,29 @@ export-marp-editable() {
     return 1
   fi
 
-  if ! command -v pandoc &> /dev/null; then
-    echo "pandoc not found. Install: sudo apt install pandoc" >&2
+  if ! command -v marp &> /dev/null; then
+    echo "marp not found. Install: npm install -g @marp-team/marp-cli" >&2
     return 1
   fi
 
+  local chrome
+  chrome="$(_marp_chrome_path)"
+  if [[ -z "$chrome" ]]; then
+    echo "ERROR: Chrome/Chromium not found. Install with:" >&2
+    echo "  sudo snap install chromium" >&2
+    echo "Or set CHROME_PATH=/path/to/chrome and retry." >&2
+    return 1
+  fi
+
+  local theme_opt=()
+  if [[ -d "$_MARP_THEME_DIR" ]]; then
+    theme_opt=(--theme-set "$_MARP_THEME_DIR")
+  fi
+
   local output="${input%.*}.pptx"
-  local reference="${HOME}/github.com/ymd000/workspaece-structure/marp/pandoc-reference.pptx"
 
-  local ref_opt=()
-  [[ -f "$reference" ]] && ref_opt=(--reference-doc="$reference")
-
-  pandoc "$input" \
-    --from markdown \
-    --to pptx \
-    --slide-level=1 \
-    "${ref_opt[@]}" \
-    -o "$output"
+  CHROME_PATH="$chrome" marp "${theme_opt[@]}" --allow-local-files \
+    --pptx-editable "$input" -o "$output"
 
   echo "Exported (editable): $output"
 }
